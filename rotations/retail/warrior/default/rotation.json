@@ -1,0 +1,232 @@
+{
+  "gameLine": "retail",
+  "class": "warrior",
+  "spec": "general",
+  "subType": "default",
+  "modules": [],
+  "config": {
+  },
+  "steps": [
+    {
+      "type": "cast",
+      "name": "Gift of the Naaru",
+      "castOpts": {
+        "spell": {
+          "id": 59542
+        },
+        "isNeedFacing": false
+      },
+      "isOutOfCombat": true,
+      "unit": "player",
+      "criteria": {
+        "logic": "and",
+        "items": [
+          {
+            "health": {
+              "unit": "player",
+              "conditions": [{"op": "<=", "value": 80}]
+            }
+          }
+        ]
+      }
+    }, {
+      "name": "Pummel",
+      "type": "cast",
+      "castOpts": {
+        "spell": {
+          "id": 6552
+        },
+        "isInterrupter": true,
+        "spread": {
+          "isOn": true,
+          "enemySelection": {
+            "criteria": {
+              "distance": {
+                "conditions": [{"op": "<=", "value": 10}]
+              }
+            }
+          }
+        }
+      },
+      "unit": "target",
+      "criteria": {
+        "logic": "or",
+        "items": [
+          {
+            "casting": {
+              "unit": "_generic_unit",
+              "castingTime": {
+                "conditions": [{"op": ">=", "value": 0.5}]
+              },
+              "isInterruptable": true
+            }
+          }, {
+            "channeling": {
+              "unit": "_generic_unit",
+              "channelTime": {
+                "conditions": [{"op": ">=", "value": 0.5}]
+              },
+              "isInterruptable": true
+            }
+          }
+        ]
+      }
+    }, {
+      "type": "cast",
+      "name": "Charge",
+      "castOpts": {
+        "spell": {
+          "id": 100
+        }
+      },
+      "unit": "target"
+    }, {
+      "type": "cast",
+      "name": "Execute",
+      "castOpts": {
+        "spell": {
+          "id": 163201
+        },
+        "spread": {
+          "isOn": true,
+          "enemySelection": {
+            "criteria": {
+              "distance": {
+                "conditions": [{"op": "<=", "value": 8}]
+              }
+            }
+          }
+        }
+      },
+      "unit": "target",
+      "criteria": {
+        "items": [
+          {
+            "health": {
+              "unit": "_generic_unit",
+              "conditions": [{"op": "<=", "value": 20}]
+            }
+          }
+        ]
+      }
+    }, {
+      "type": "cast",
+      "name": "Victory Rush",
+      "castOpts": {
+        "spell": {
+          "id": 34428
+        }
+      },
+      "unit": "target",
+      "criteria": {
+        "items": [
+          {
+            "aura": {
+              "unit": "player",
+              "spell": {
+                "id": 32216
+              },
+              "filter": ["HELPFUL"],
+              "isExists": true
+            }
+          }
+        ]
+      }
+    }, {
+      "type": "cast",
+      "name": "Shield Block",
+      "castOpts": {
+        "spell": {
+          "id": 2565
+        }
+      },
+      "unit": "player",
+      "criteria": {
+        "items": [
+          {
+            "distance": {
+              "unit2": "target",
+              "conditions": [{"op": "<=", "value": 8}]
+            },
+            "enemiesAround": {
+              "unit": "player",
+              "conditions": [{"op": ">=", "value": 2}],
+              "distance": 10
+            }
+          }
+        ]
+      }
+    }, {
+      "type": "cast",
+      "name": "Shield Slam",
+      "castOpts": {
+        "spell": {
+          "id": 23922
+        }
+      },
+      "unit": "target"
+    }, {
+      "type": "cast",
+      "name": "Whirlwind",
+      "castOpts": {
+        "spell": {
+          "id": 1680
+        }
+      },
+      "unit": "player",
+      "criteria": {
+        "items": [
+          {
+            "distance": {
+              "unit2": "target",
+              "conditions": [{"op": "<=", "value": 8}]
+            },
+            "enemiesAround": {
+              "unit": "player",
+              "conditions": [{"op": ">=", "value": 2}],
+              "distance": 10
+            }
+          }
+        ]
+      }
+    }, {
+      "type": "cast",
+      "name": "Slam",
+      "castOpts": {
+        "spell": {
+          "id": 1464
+        }
+      },
+      "unit": "target",
+      "criteria": {
+        "logic": "or",
+        "items": [
+          {
+            "isSpellKnown": {
+              "comment": "Whirlwind",
+              "spellId": 1680,
+              "isKnown": false
+            }
+          }, {
+            "items": [
+              {
+                "isSpellKnown": {
+                  "comment": "Whirlwind",
+                  "spellId": 1680,
+                  "isKnown": true
+                },
+                "powers": [
+                  {
+                    "unit": "player",
+                    "type": "rage",
+                    "conditions": [{"op": ">=", "value": 30}]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
